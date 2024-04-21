@@ -20,13 +20,7 @@ public class Computer {
 
     public void play(Balls userBalls){
         PlayResult playResult = comBalls.playBallsByBalls(userBalls);
-        printGameResult(playResult);
-    }
-    private static void printGameResult(PlayResult playResult) {
-        OutputView.printPlayResultNothing(playResult.getBallCount(), playResult.getStrikeCount());
-        OutputView.printPlayResultBall(playResult.getBallCount(), playResult.getStrikeCount());
-        OutputView.printPlayResultStrike(playResult.getBallCount(), playResult.getStrikeCount());
-        OutputView.printPlayResultBallAndStrike(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printGameResult(playResult);
     }
 
     public boolean isGameEnd(Balls userBalls) {

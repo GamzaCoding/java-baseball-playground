@@ -65,5 +65,11 @@ public class OutputView {
             System.out.printf(BALL_AND_STRIKE_MESSAGE,ballPoint,strikePoint);
         }
     }
+    public static void printGameResult(PlayResult playResult) {
+        OutputView.printPlayResultNothing(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printPlayResultBall(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printPlayResultStrike(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printPlayResultBallAndStrike(playResult.getBallCount(), playResult.getStrikeCount());
+    }
 
 }
