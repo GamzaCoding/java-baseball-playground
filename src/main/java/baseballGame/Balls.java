@@ -3,6 +3,7 @@ package baseballGame;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -50,10 +51,10 @@ public class Balls {
         }
     }
 
-    private boolean isDuplicate(List<Integer> balls) {
-        return balls.stream()
+    private boolean isDuplicate(List<Integer> ballNumbers) {
+        return ballNumbers.stream()
                 .distinct()
-                .count() != balls.size();
+                .count() != ballNumbers.size();
     }
 
     private List<Ball> mapBalls(List<Integer> numbers) {
@@ -101,19 +102,18 @@ public class Balls {
         return new PlayResult(ballCount, strikeCount);
     }
 
+
     private List<Integer> createRandomNumber(){
-        List<Integer> list0;
-        List<Integer> list1 = Stream.of(SETTING_NUM_ONE, SETTING_NUM_TWO, SETTING_NUM_THREE)
-                .map(number -> (int)(Math.random() * MAX_BALL_NUMBER) + MIN_BALL_NUMBER)
-                .collect(Collectors.toList());
+        List<Integer> randomNumbers;
+        Random random = new Random();
 
-        list0 = list1;
+        do{
+            randomNumbers = Stream.generate(() -> random.nextInt(MAX_BALL_NUMBER) + MIN_BALL_NUMBER)
+                    .limit(BALLS_SIZE)
+                    .collect(Collectors.toList());
+        } while (isDuplicate(randomNumbers));
 
-        if(isDuplicate(list1)){
-            list0 = createRandomNumber();
-        }
-
-        return list0;
+        return randomNumbers;
     }
 
     public void changeBalls(){
