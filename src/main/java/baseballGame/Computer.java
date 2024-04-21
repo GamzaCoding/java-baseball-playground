@@ -1,40 +1,35 @@
 package baseballGame;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Computer {
+    private final static int SETTING_NUM_ONE = 1;
+    private final static int SETTING_NUM_TWO = 2;
+    private final static int SETTING_NUM_THREE = 3;
 
-    public Balls createRandomBalls() {
-        return new Balls(notDuplicateList());
+    private final Balls comBalls;
+
+    Computer(){
+        this.comBalls = new Balls(Arrays.asList(SETTING_NUM_ONE, SETTING_NUM_TWO, SETTING_NUM_THREE));
+        comBalls.changeBalls();
     }
 
-    private List<Integer> notDuplicateList() {
-        List<Integer> list = createRandomThreeNumbers();
-
-        while(!duplicateCheck(list)){
-            list = createRandomThreeNumbers();
-        }
-        return list;
+    public void changeRandomBalls(){
+        comBalls.changeBalls();
     }
 
-    private boolean duplicateCheck(List<Integer> list) {
-        if(list.get(0) == list.get(1) ||
-                list.get(0) == list.get(2) ||
-                list.get(1) == list.get(2)){
-            return false;
-        }
-        return true;
+    public void play(Balls userBalls){
+        PlayResult playResult = comBalls.playBallsByBalls(userBalls);
+        printGameResult(playResult);
+    }
+    private static void printGameResult(PlayResult playResult) {
+        OutputView.printPlayResultNothing(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printPlayResultBall(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printPlayResultStrike(playResult.getBallCount(), playResult.getStrikeCount());
+        OutputView.printPlayResultBallAndStrike(playResult.getBallCount(), playResult.getStrikeCount());
     }
 
-    private List<Integer> createRandomThreeNumbers() {
-        List<Integer> list = new ArrayList<>();
-        for(int i = 0; i < 3; i++){
-            list.add((int)(Math.random() * 9) + 1);
-        }
-        return list;
+    public boolean isGameEnd(Balls userBalls) {
+        return comBalls.isThreeStrike(userBalls);
     }
-
-
 }

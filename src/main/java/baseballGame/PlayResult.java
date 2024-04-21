@@ -2,19 +2,19 @@ package baseballGame;
 
 public class PlayResult {
 
-    private final int strikePoint;
-    private final int ballPoint;
+    private final int ballCount;
+    private final int strikeCount;
 
-    PlayResult(int strikePoint, int ballPoint){
-        this.strikePoint = strikePoint;
-        this.ballPoint = ballPoint;
+    PlayResult(int ballCont, int strikeCount){
+        this.ballCount = ballCont;
+        this.strikeCount = strikeCount;
     }
 
-    public int getBallPoint() {
-        return ballPoint;
+    public int getBallCount() {
+        return ballCount;
     }
 
-    public int getStrikePoint() {
-        return strikePoint;
+    public int getStrikeCount() {
+        return strikeCount;
     }
 }

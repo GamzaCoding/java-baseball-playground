@@ -1,5 +1,5 @@
 package baseballGame;
 
 public enum BallHint {
-    NOTHING, STRIKE, BALL
+    NOTHING,BALL,STRIKE
 }

@@ -1,6 +1,7 @@
 package baseballGame;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -9,28 +10,33 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BallsByBallTest {
 
-    Balls comBalls;
+
+    private Balls comBalls;
+
     @BeforeEach
-    void setUp(){
-        comBalls = new Balls(Arrays.asList(1,2,3));
-    }
-    @Test
-    void BallsNothingTest(){
-        BallHint hint = comBalls.play(new Ball(2,6));
-        assertThat(hint).isEqualTo(BallHint.NOTHING);
+    public void setUp(){
+        this.comBalls = new Balls(Arrays.asList(1,2,3));
     }
 
     @Test
-    void BallsBallTest(){
-        BallHint hint = comBalls.play(new Ball(1,2));
-        assertThat(hint).isEqualTo(BallHint.BALL);
+    @DisplayName("낫싱 테스트")
+    public void nothingTest(){
+        Ball userBall = new Ball(1, 4);
+        assertThat(comBalls.playBallsByBall(userBall)).isEqualTo(BallHint.NOTHING);
     }
 
     @Test
-    void BallsStrikeTest(){
-        BallHint hint = comBalls.play(new Ball(2,2));
-        assertThat(hint).isEqualTo(BallHint.STRIKE);
+    @DisplayName("볼 테스트")
+    public void ballTest(){
+        Ball userBall = new Ball(1, 2);
+        assertThat(comBalls.playBallsByBall(userBall)).isEqualTo(BallHint.BALL);
     }
 
+    @Test
+    @DisplayName("스트라이크 테스트")
+    public void strikeTest(){
+        Ball userBall = new Ball(1, 1);
+        assertThat(comBalls.playBallsByBall(userBall)).isEqualTo(BallHint.STRIKE);
+    }
 
 }
