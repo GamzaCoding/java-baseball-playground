@@ -18,8 +18,8 @@ public class GameController {
         if(computer.isGameEnd(userBalls)){
             OutputView.gameEndingMessage();
             OutputView.gameReplayMessage();
-            rePlayGame(InputView.inputReplay());
 
+            rePlayGame(InputView.inputReplay());
             return;
         }
         gamePlay();

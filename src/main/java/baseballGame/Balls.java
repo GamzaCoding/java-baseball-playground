@@ -38,10 +38,7 @@ public class Balls {
     }
 
     private boolean isSizeThree(List<Integer> balls) {
-        if(balls.size() != BALLS_SIZE){
-            return false;
-        }
-        return true;
+        return balls.size() == BALLS_SIZE;
     }
 
     private void checkDuplicateException(List<Integer> balls) {
@@ -106,7 +103,6 @@ public class Balls {
     private List<Integer> createRandomNumber(){
         List<Integer> randomNumbers;
         Random random = new Random();
-
         do{
             randomNumbers = Stream.generate(() -> random.nextInt(MAX_BALL_NUMBER) + MIN_BALL_NUMBER)
                     .limit(BALLS_SIZE)
